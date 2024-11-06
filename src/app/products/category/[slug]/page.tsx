@@ -7,13 +7,12 @@ interface CategoryPageProps{
     }
 }
 
-export default async function CategoriePage({ params: { slug } }: CategoryPageProps){
-    const products = await fetchWrapper(`products/category/${slug}`)
-
+export default async function CategoryPage({ params: { slug } }: CategoryPageProps){
+    const productInfo = await fetchWrapper(`products/category/${slug}`)
 
     return(
         <div>
-            <ProductList products={products}/>
+            <ProductList products={productInfo.products}/>
         </div>
     )
 }

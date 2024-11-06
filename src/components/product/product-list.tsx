@@ -2,7 +2,7 @@
 
 import { Product } from "@/@types/product"
 import { ProductItem } from "./product-item"
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import { fetchWrapper } from "@/utils/fetch-wrapper"
 import { Input } from "../ui/input"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../ui/select"
@@ -10,40 +10,41 @@ import { MagnifyingGlass } from "@phosphor-icons/react"
 
 export function ProductList({ products }: { products: Product[] }) {
     const [filteredProducts, setFilteredProducts] = useState(products)
-    const [query, setQuery] = useState('')
 
-    const handleSearchProduct = async () => {
-        const productInfo = await fetchWrapper(`products/search?q=${query}`)
-
-        if (productInfo) {
-            setFilteredProducts(productInfo.products)
+    const handleSearchProduct = async (query: string) => {
+        try{
+            const productInfo = await fetchWrapper(`products/search?q=${query}`)
+    
+            if (productInfo) {
+                setFilteredProducts(productInfo.products)
+            }
+        }catch(error){
+            console.log(error)
         }
     }
-
-    useEffect(() => {
-        handleSearchProduct()
-    }, [query])
 
     
     const handleProductsOrder = async (order: string) => {
-        const productInfo = await fetchWrapper(`products?sortBy=title&order=${order}`)
-
-        if(productInfo){
-            setFilteredProducts(productInfo.products)
+        try{
+            const productInfo = await fetchWrapper(`products?sortBy=title&order=${order}`)
+    
+            if(productInfo){
+                setFilteredProducts(productInfo.products)
+            }
+        }catch(error){
+            console.log(error)
         }
     }
 
-
     return (
         <div className="space-y-6">
-            <div className="flex items-center justify-between gap-4">
-                <div className="flex items-center gap-4 relative">
+            <div className="flex items-center justify-between gap-4 flex-wrap">
+                <div className="flex items-center gap-4 relative w-full sm:w-72">
                     <MagnifyingGlass size={16} className="absolute left-3 text-neutral-700"/>
                     <Input
-                        value={query}
-                        onChange={(e) => setQuery(e.target.value)}
+                        onChange={(e) => handleSearchProduct(e.target.value)}
                         type="text"
-                        className="w-72 indent-5"
+                        className="indent-5 text-sm"
                         placeholder="Qual produto você procura?"
                     />
                 </div>
@@ -66,7 +67,11 @@ export function ProductList({ products }: { products: Product[] }) {
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-                {filteredProducts.map((product) => <ProductItem product={product} key={product.id} />)}
+                {filteredProducts.length > 0 ? 
+                    filteredProducts.map((product) => <ProductItem product={product} key={product.id} />
+                ): (
+                    <p className="text-base font-medium">Nenhum produto encontrado!</p>
+                )}
             </div>
         </div>
     )

@@ -40,48 +40,44 @@ export default function Products() {
     }
 
     return (
-        <div className="w-full min-h-screen bg-gradient-to-b from-neutral-50 to-neutral-100 p-8">
-            <main className="w-full max-w-7xl mx-auto mt-10 space-y-6 sm:mt-12">
-                <div className="flex items-start justify-between w-full">
-                    <h2 className="text-2xl font-semibold sm:text-3xl">Lista de Produtos</h2>
+        <main className="space-y-6">
+            <div className="flex items-center justify-between gap-5 w-full sm:items-start">
+                <h2 className="text-2xl font-semibold sm:text-3xl">Lista de Produtos</h2>
 
-                    <Link href={'/products/create'}>
-                        <Button 
-                            variant={"default"} 
-                            className="flex items-center gap-2"
-                        >
-                            <Plus size={20}/>
-                            Novo Produto
-                        </Button>
-                    </Link>
-                </div>
-                <section className="space-y-6">
-                    {loading ? <h1>Loading...</h1> : (
-                        <ProductList products={productInfo.products} />
-                    )}
-                </section>
+                <Link href={'/products/create'}>
+                    <Button
+                        variant={"default"}
+                        className="flex items-center gap-2"
+                    >
+                        <Plus size={20} />
+                        Novo Produto
+                    </Button>
+                </Link>
+            </div>
+            {loading ? <h1>Loading...</h1> : (
+                <ProductList products={productInfo.products} />
+            )}
 
-                <div className="flex items-center gap-6 w-full justify-center">
-                    <Button 
-                        variant={"ghost"} 
-                        onClick={handlePreviousProducts} 
-                        className={`${notPrev && "text-neutral-400"}`} 
-                        disabled={notPrev}
-                    >
-                        <ArrowLeft size={20} />
-                        Anterior
-                    </Button>
-                    <Button 
-                        variant={"ghost"} 
-                        onClick={handleNextProducts} 
-                        className={`${notNext && "text-neutral-400 "}`} 
-                        disabled={notNext}
-                    >
-                        Próximo
-                        <ArrowRight size={20} />
-                    </Button>
-                </div>
-            </main>
-        </div>
+            <div className="flex items-center gap-6 w-full justify-center">
+                <Button
+                    variant={"ghost"}
+                    onClick={handlePreviousProducts}
+                    className={`${notPrev && "text-neutral-400"}`}
+                    disabled={notPrev}
+                >
+                    <ArrowLeft size={20} />
+                    Anterior
+                </Button>
+                <Button
+                    variant={"ghost"}
+                    onClick={handleNextProducts}
+                    className={`${notNext && "text-neutral-400 "}`}
+                    disabled={notNext}
+                >
+                    Próximo
+                    <ArrowRight size={20} />
+                </Button>
+            </div>
+        </main>
     )
 }
