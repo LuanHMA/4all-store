@@ -58,9 +58,25 @@ const config: Config = {
   				'4': 'hsl(var(--chart-4))',
   				'5': 'hsl(var(--chart-5))'
   			}
-  		}
+  		},
+		keyframes: {
+			fadeIn: {
+				'0%': { opacity: '0', transform: 'translateY(-20px)', scale: '0.8' },
+				'100%': { opacity: '1', transform: 'translateY(0px)', scale: '1' },
+			  },
+			  fadeOut: {
+				'0%': { opacity: '1', transform: 'translateY(0px)', scale: '1' },
+				'100%': { opacity: '0', transform: 'translateY(-20px)', scale: '0.8' },
+			  },
+		},
+		animation: {
+			fadeIn: 'fadeIn 400ms cubic-bezier(0.16, 1, 0.3, 1) forwards',
+			fadeOut: 'fadeOut 300ms cubic-bezier(0.16, 1, 0.3, 1) forwards',
+		}
   	}
+
   },
+  // eslint-disable-next-line @typescript-eslint/no-require-imports
   plugins: [require("tailwindcss-animate")],
 };
 export default config;
