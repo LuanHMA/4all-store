@@ -2,13 +2,17 @@
 
 import { Product } from "@/@types/product"
 import { ProductItem } from "./product-item"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { fetchWrapper } from "@/utils/fetch-wrapper"
 import { SearchFilter } from "./search-filter"
 import { OrderFilter } from "./order-filter"
 
 export function ProductList({ products }: { products: Product[] }) {
     const [filteredProducts, setFilteredProducts] = useState(products)
+
+   useEffect(()=> {
+        setFilteredProducts(products)
+   },[products])
 
     const handleSearchProduct = async (query: string) => {
         try{
@@ -41,7 +45,7 @@ export function ProductList({ products }: { products: Product[] }) {
                 <OrderFilter onProductsOrder={handleProductsOrder}/>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
                 {filteredProducts.length > 0 ? 
                     filteredProducts.map((product) => <ProductItem product={product} key={product.id} />
                 ): (

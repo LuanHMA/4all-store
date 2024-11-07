@@ -11,7 +11,7 @@ interface ProductReviewProps {
 
 export function ProductReview(review: ProductReviewProps) {
     return (
-        <Card className="w-full max-w-[400px]">
+        <Card className="w-full max-w-[400px] border bg-neutral-50">
             <CardHeader>
                 <div className="flex items-center justify-between">
                     <div className="flex items-center gap-1">

@@ -1,5 +1,5 @@
 {
-  "name": "elegance-hub",
+  "name": "4all-store",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -20,8 +20,6 @@
     "@radix-ui/react-toast": "^1.2.2",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
-    "embla-carousel-react": "^8.3.1",
-    "lucide-react": "^0.454.0",
     "next": "15.0.2",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",

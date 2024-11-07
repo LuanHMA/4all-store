@@ -4,8 +4,7 @@ import { ProductInfo } from "@/@types/product"
 import { ProductList } from "@/components/product/product-list"
 import { Button } from "@/components/ui/button"
 import { fetchWrapper } from "@/utils/fetch-wrapper"
-import { ArrowLeft, ArrowRight, Plus } from "@phosphor-icons/react"
-import Link from "next/link"
+import { ArrowLeft, ArrowRight } from "@phosphor-icons/react"
 import { useEffect, useState } from "react"
 
 export default function Products() {
@@ -34,26 +33,13 @@ export default function Products() {
         if (notPrev) return
         setCurrentPage((prev) => prev - 30)
     }
-    const handleNextProducts = () => {
+    const handleNextProducts = () => { 
         if (notNext) return
         setCurrentPage((prev) => prev + 30)
     }
 
     return (
         <main className="space-y-6">
-            <div className="flex items-center justify-between gap-5 w-full sm:items-start">
-                <h2 className="text-2xl font-semibold sm:text-3xl">Lista de Produtos</h2>
-
-                <Link href={'/products/create'}>
-                    <Button
-                        variant={"default"}
-                        className="flex items-center gap-2"
-                    >
-                        <Plus size={20} />
-                        Novo Produto
-                    </Button>
-                </Link>
-            </div>
             {loading ? <h1>Loading...</h1> : (
                 <ProductList products={productInfo.products} />
             )}
