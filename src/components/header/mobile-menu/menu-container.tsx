@@ -43,7 +43,7 @@ export function MobileMenuContainer({ isOpen, onClose }: MobileMenuWrapper) {
           <h2 className="font-semibold">Categorias</h2>
           <div className="h-[90vh] flex flex-col gap-2 overflow-auto w-full">
             {categories.map((category, index) => (
-              <Link href={`/products/category/${category.slug}`} key={index} className="text-sm">{category.name}</Link>
+              <Link href={`/products/category/${category.slug}`} key={index} className="text-sm" onClick={onClose}>{category.name}</Link>
             ))}
           </div>
         </div>
