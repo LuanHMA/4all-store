@@ -8,12 +8,12 @@ import { DeleteProduct } from "./delete"
 import { EditProduct } from "./edit"
 
 interface ProductPageProps {
-    params: {
-        id: string
-    }
+    params: Promise<{ id: string }>
 }
 
-export default async function ProductPage({ params: { id } }: ProductPageProps) {
+export default async function ProductPage({ params }: ProductPageProps) {
+    const { id } = await params
+
     const product = await fetchWrapper(`products/${id}`) as Product
     const productPrice = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(product.price)
 
