@@ -40,7 +40,7 @@ export function MobileMenuContainer({ isOpen, onClose }: MobileMenuWrapper) {
         <div
           className={`flex flex-col items-start space-y-2 p-6 ${isOpen ? 'animate-fadeIn' : 'animate-fadeOut'}`}
         >
-          <h2 className="font-semibold">Lista de categorias</h2>
+          <h2 className="font-semibold">Categorias</h2>
           <div className="h-[90vh] flex flex-col gap-2 overflow-auto w-full">
             {categories.map((category, index) => (
               <Link href={`/products/category/${category.slug}`} key={index} className="text-sm">{category.name}</Link>
