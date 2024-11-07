@@ -2,6 +2,7 @@
 
 import { ProductInfo } from "@/@types/product"
 import { ProductList } from "@/components/product/product-list"
+import { ProductSkeletonLoading } from "@/components/product/product-skeleton-loading"
 import { Button } from "@/components/ui/button"
 import { fetchWrapper } from "@/utils/fetch-wrapper"
 import { ArrowLeft, ArrowRight } from "@phosphor-icons/react"
@@ -40,7 +41,9 @@ export default function Products() {
 
     return (
         <main className="space-y-6">
-            {loading ? <h1>Loading...</h1> : (
+            {loading ? (
+                <ProductSkeletonLoading/>
+            ) : (
                 <ProductList products={productInfo.products} />
             )}
 
